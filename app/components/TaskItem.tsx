@@ -5,7 +5,7 @@ import { Itask } from "../@types";
 
 export default function TaskItem({ task }:{task:Itask}) {
   return (
-    <div  className="group relative">
+    <div  className={`group relative task-${task.priority}` }>
     <img
       alt={''}
       src={task.completed?'/clock.jpg':'/checkmark.jpg'}

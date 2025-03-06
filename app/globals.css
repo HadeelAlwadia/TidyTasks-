@@ -22,3 +22,14 @@
 button{
   cursor: pointer;
 }
+.task-Low{
+background-color: green;
+}
+.task-Medium{
+  background-color: gold;
+
+}
+.task-High{
+  background-color: red;
+
+}
