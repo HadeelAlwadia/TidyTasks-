@@ -2,7 +2,10 @@
 //[id]/page.tsx (Task Details Page)
 
 import Button from "@/app/components/Button";
+import TaskItem from "@/app/components/TaskItem";
+import Loading from "@/app/loading";
 import NotFound from "@/app/not-found";
+import { Suspense } from "react";
 
 
 async function getTask(id: string) {
@@ -16,13 +19,15 @@ export default async function TaskPage({ params }: { params: any }) {
   return (<>
     {
       !task ? <NotFound /> :
-        <div>
-          <h1 className="text-xl font-bold">Task Details</h1>
-          <p className="mt-2">Title: {task.title}</p>
-          <p>Status: {task.completed ? "✅ Completed" : "⏳ Pending"}</p>
-           <Button title={task.title}/>
-          <a href="/" className="block mt-4 text-blue-600">Back to Tasks</a>
-        </div>
+
+        <div style={{width:'30%', padding:'15px 15px', margin:'30px auto',height:'60vh', boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'}}>
+          <a href="/" className="block mt-4 text-white-800">Back to Tasks</a>
+          <Suspense fallback={<Loading/>}>
+          <TaskItem task={task}/>
+          <Button title={task.title}/>
+          </Suspense>
+        
+          </div>
     }
 
   </>)

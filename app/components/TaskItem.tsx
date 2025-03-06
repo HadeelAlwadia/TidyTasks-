@@ -5,20 +5,27 @@ import { Itask } from "../@types";
 
 export default function TaskItem({ task }:{task:Itask}) {
   return (
-    <li className="flex justify-between items-center bg-gray-200 p-2 rounded">
-      <Link href={`/task/${task.id}`} className="flex items-center">
-      
-        <Image
-          src={task.completed ? "/checkmark.png" : "/clock.png"}
-          alt="status icon"
-          width={20}
-          height={20}
-        />
-        <span className="ml-2">{task.title}</span>
-      </Link>
-      <span className={task.completed ? "text-green-600" : "text-red-600"}>
-        {task.completed ? "Completed" : "Pending"}
-      </span>
-    </li>
+    <div  className="group relative">
+    <img
+      alt={''}
+      src={task.completed?'/clock.jpg':'/checkmark.jpg'}
+    height={'80%'}
+    width={'100%'}
+      className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+    />
+    <div className="mt-4 flex justify-between">
+      <div>
+        <h3 className="text-sm text-gray-700">
+          <a href={`/task/${task.id}`}>
+            <span aria-hidden="true" className="absolute inset-0" />
+            {task.title}
+          </a>
+        </h3>
+      </div>
+      <p className="text-sm font-medium text-gray-900">Status: {task.completed ? "✅ Completed" : "⏳ Pending"}</p>
+    </div>
+  </div>
+
+
   );
 }
